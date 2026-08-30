@@ -5,6 +5,8 @@
 (load "ob-moonli.el")
 #+end_src
 
+For details, see [[https://orgmode.org/manual/Working-with-Source-Code.html][Working with Source Code]] section of [[https://orgmode.org/manual/index.html][The Org Manual]].
+
 #+begin_src moonli :exports both
 in-package :cl-user
 
