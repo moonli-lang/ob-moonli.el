@@ -5,7 +5,7 @@
 (load "ob-moonli.el")
 #+end_src
 
-#+begin_src moonli
+#+begin_src moonli :exports both
 in-package :cl-user
 
 defun fib-recursive(n):
@@ -25,7 +25,7 @@ fib-recursive(4)
 : 3
 
 
-#+begin_src moonli :results output
+#+begin_src moonli :results output :exports both
 in-package :cl-user
 
 trace(fib-recursive)
@@ -58,7 +58,7 @@ end
 #+end_example
 
 
-#+begin_src moonli
+#+begin_src moonli :exports both
 defun fib-iterative(n):
   loop :for i :below n
     :with f1 := 0
