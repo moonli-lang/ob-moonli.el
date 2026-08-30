@@ -1,0 +1,89 @@
+# -*- org-confirm-babel-evaluate: nil -*-
+#+title: Moonli Org Babel
+
+#+begin_src emacs-lisp
+(load "ob-moonli.el")
+#+end_src
+
+#+begin_src moonli
+in-package :cl-user
+
+defun fib-recursive(n):
+  if n == 0:
+    0
+  elif n == 1:
+    1
+  else:
+    fib-recursive(n - 1) + fib-recursive(n - 2)
+  end
+end
+
+fib-recursive(4)
+#+end_src
+
+#+RESULTS:
+: 3
+
+
+#+begin_src moonli :results output
+in-package :cl-user
+
+trace(fib-recursive)
+
+let *trace-output* = *standard-output*:
+  fib-recursive(4)
+end
+#+end_src
+
+#+RESULTS:
+#+begin_example
+    1: (FIB-RECURSIVE 4)
+      2: (FIB-RECURSIVE 3)
+        3: (FIB-RECURSIVE 2)
+          4: (FIB-RECURSIVE 1)
+          4: fib-recursive returned 1
+          4: (FIB-RECURSIVE 0)
+          4: fib-recursive returned 0
+        3: fib-recursive returned 1
+        3: (FIB-RECURSIVE 1)
+        3: fib-recursive returned 1
+      2: fib-recursive returned 2
+      2: (FIB-RECURSIVE 2)
+        3: (FIB-RECURSIVE 1)
+        3: fib-recursive returned 1
+        3: (FIB-RECURSIVE 0)
+        3: fib-recursive returned 0
+      2: fib-recursive returned 1
+    1: fib-recursive returned 3
+#+end_example
+
+
+#+begin_src moonli
+defun fib-iterative(n):
+  loop :for i :below n
+    :with f1 := 0
+    :with f2 := 1
+    :with tmp := nil
+    :do tmp = f1 + f2
+        f1 = f2
+        f2 = tmp
+    :finally return(f1)
+  end
+end
+
+loop :for i :below 10
+  :collect list(i, fib-iterative(i))
+end
+#+end_src
+
+#+RESULTS:
+| 0 |  0 |
+| 1 |  1 |
+| 2 |  1 |
+| 3 |  2 |
+| 4 |  3 |
+| 5 |  5 |
+| 6 |  8 |
+| 7 | 13 |
+| 8 | 21 |
+| 9 | 34 |
