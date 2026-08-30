@@ -2,7 +2,7 @@
 #+title: Moonli Org Babel
 
 #+begin_src emacs-lisp
-(load "ob-moonli.el")
+(load-file "ob-moonli.el")
 #+end_src
 
 For details, see [[https://orgmode.org/manual/Working-with-Source-Code.html][Working with Source Code]] section of [[https://orgmode.org/manual/index.html][The Org Manual]].
